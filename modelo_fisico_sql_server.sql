@@ -6,10 +6,10 @@
 -- =============================================
 
 -- Criação do banco de dados
-CREATE DATABASE TCC;
+CREATE DATABASE NobreLar_TCC;
 GO
 
-USE TCC;
+USE NobreLar_TCC;
 GO
 
 -- =============================================
