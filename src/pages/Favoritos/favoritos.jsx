@@ -31,8 +31,8 @@ function Favoritos() {
     return (
         <div className='app-container'>
             <div className="favoritos-header">
-                <h1>💖 Meus Favoritos</h1>
-                <p>Seus imóveis salvos estão aqui!</p>
+                <h1>⭐ Meus Projetos Favoritos</h1>
+                <p>Suas ideias sustentáveis salvas estão aqui!</p>
             </div>
 
             {!isAuthenticated ? (
@@ -41,24 +41,24 @@ function Favoritos() {
                 </div>
             ) : favoritos.length === 0 ? (
                 <div className="favoritos-empty">
-                    <p>Você ainda não tem favoritos.</p>
-                    <p>Navegue pelos imóveis na página Home e adicione aos favoritos!</p>
+                    <p>Você ainda não tem projetos favoritos.</p>
+                    <p>Navegue pelos projetos sustentáveis e adicione aos favoritos!</p>
                 </div>
             ) : (
                 <div className="cards-container">
                     {favoritos.map((favorito) => (
                         <div key={favorito.idFavorito} className="favorito-card">
-                            {favorito.imagemImovel && (
-                                <img src={favorito.imagemImovel} alt={favorito.nomeImovel} className="produto-imagem" />
+                            {favorito.imagemProjeto && (
+                                <img src={favorito.imagemProjeto} alt={favorito.nomeProjeto} className="produto-imagem" />
                             )}
-                            <h3>{favorito.nomeImovel}</h3>
-                            <p>R$ {favorito.valorImovel}</p>
-                            <p>{favorito.cidadeImovel}</p>
-                            <p>Adicionado em: {favorito.dataAdicao}</p>
+                            <h3>{favorito.nomeProjeto}</h3>
+                            <span className="categoria-badge">{favorito.categoriaProjeto}</span>
+                            <p>📍 {favorito.cidadeProjeto}</p>
+                            <p>Adicionado em: {new Date(favorito.dataAdicao).toLocaleDateString('pt-BR')}</p>
                             <div className="favorito-actions">
                                 <button 
                                     className="btn-ver-detalhes-favorito"
-                                    onClick={() => navigate(`/moradia/${favorito.idImovel}`)}
+                                    onClick={() => navigate(`/projetos/${favorito.idProjeto}`)}
                                 >
                                     👁️ Ver Detalhes
                                 </button>

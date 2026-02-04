@@ -5,31 +5,14 @@ import api from 'axios'
 import { useAuth } from '../../context/AuthContext'
 
 function Header() {
-    const { user, isAuthenticated, logout } = useAuth()
+    const { user, isAuthenticated, logout, isAdmin } = useAuth()
     const [showDropdown, setShowDropdown] = useState(false)
     const [showAdminMenu, setShowAdminMenu] = useState(false)
 
     return (
         <header>
             <div>
-                <img src={Logo} alt="Logo" title="Erradicação da pobreza" className="logo" />
-                <nav>
-
-                    <a href="/home" className="abas">Home</a>
-
-                    <span className='separador'>|</span>
-
-                    <a href="/corretores" className="abas">Corretores</a>
-
-                    <span className='separador'>|</span>
-
-                   <a href="/favoritos" className="abas">Favoritos</a>
-
-                    <span className='separador'>|</span>
-
-                    <a href="/ajuda" className="abas">Ajuda</a>
-
-                </nav>
+                <img src={Logo} alt="InovaVerde" title="Inovação e Sustentabilidade" className="logo" />
                 
                 <div className="header-actions">
                     <div 
@@ -40,16 +23,42 @@ function Header() {
                         
                         {showAdminMenu && (
                             <div className="dropdown-menu admin-dropdown">
-                                <Link to="/imovel" className="dropdown-item">
-                                    🏠 Imóveis
+                                <Link to="/home" className="dropdown-item">
+                                    🏠 Início
+                                </Link>
+                                <Link to="/projetos" className="dropdown-item">
+                                    🌱 Projetos
+                                </Link>
+                                <Link to="/enviar-ideia" className="dropdown-item">
+                                    💡 Enviar Ideia
+                                </Link>
+                                <Link to="/dicas" className="dropdown-item">
+                                    📚 Dicas
+                                </Link>
+                                <Link to="/sobre" className="dropdown-item">
+                                    ℹ️ Sobre
+                                </Link>
+                                <Link to="/ajuda" className="dropdown-item">
+                                    ❓ Ajuda
                                 </Link>
                                 {isAuthenticated && (
                                     <>
-                                        <Link to="/corretor" className="dropdown-item">
-                                            👥 Profissionais
+                                        <hr style={{ margin: '10px 0', border: 'none', borderTop: '1px solid #ddd' }} />
+                                        <Link to="/favoritos" className="dropdown-item">
+                                            ⭐ Favoritos
                                         </Link>
-                                        <Link to="/locacao" className="dropdown-item">
-                                            💼 Transações
+                                    </>
+                                )}
+                                {isAdmin() && (
+                                    <>
+                                        <Link to="/admin-projetos" className="dropdown-item">
+                                            🌿 Gerenciar Projetos
+                                        </Link>
+                                        <Link to="/admin-ideias" className="dropdown-item">
+                                            💡 Gerenciar Ideias
+                                        </Link>
+                                        <Link to="/admin-usuarios" className="dropdown-item">
+                                            👥 Gerenciar Usuários
                                         </Link>
                                     </>
                                 )}

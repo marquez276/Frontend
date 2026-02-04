@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
+const ADMIN_EMAIL = 'diegocostamarques23@icloud.com'
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
@@ -28,6 +29,10 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(userData))
     }
 
+    const isAdmin = () => {
+        return user?.email === ADMIN_EMAIL
+    }
+
     const logout = () => {
         setUser(null)
         setIsAuthenticated(false)
@@ -39,7 +44,8 @@ export const AuthProvider = ({ children }) => {
             user,
             isAuthenticated,
             login,
-            logout
+            logout,
+            isAdmin
         }}>
             {children}
         </AuthContext.Provider>

@@ -54,7 +54,9 @@ const Usuario = () => {
       resetForm();
     } catch (error) {
       console.error("Erro ao cadastrar o usuário", error);
-      setMessage("Erro ao cadastrar o usuário.");
+      console.error("Resposta do erro:", error.response?.data);
+      const errorMsg = error.response?.data?.message || error.response?.data || error.message;
+      setMessage(`Erro ao cadastrar: ${errorMsg}`);
     }
   };
 
