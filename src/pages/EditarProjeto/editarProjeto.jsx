@@ -64,7 +64,7 @@ function EditarProjeto() {
                 ✏️ Editar Projeto
             </div>
 
-            <form onSubmit={handleSubmit} style={{ padding: '20px' }}>
+            <form onSubmit={handleSubmit} className="admin-container">
                 <div className="form-group">
                     <label>Nome do Projeto:</label>
                     <input
@@ -131,10 +131,10 @@ function EditarProjeto() {
                     </select>
                 </div>
 
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <button type="submit">💾 Salvar Alterações</button>
+                <div className="form-actions">
+                    <button type="submit">Salvar Alterações</button>
                     <button type="button" onClick={() => navigate('/admin-projetos')} className="btn-cancelar">
-                        ❌ Cancelar
+                        Cancelar
                     </button>
                 </div>
             </form>

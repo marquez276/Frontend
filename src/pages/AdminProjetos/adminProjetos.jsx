@@ -37,7 +37,7 @@ function AdminProjetos() {
                 🌿 Gerenciar Projetos
             </div>
 
-            <div style={{ padding: '20px' }}>
+            <div className="admin-container">
                 <table className="admin-table">
                     <thead>
                         <tr>

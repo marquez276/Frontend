@@ -486,6 +486,10 @@ button:hover, .btn:hover {
 }
 
 /* TABELAS ADMIN */
+.admin-container {
+  padding: 20px;
+}
+
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -570,6 +574,54 @@ button:hover, .btn:hover {
 .admin-principal {
   color: #FF9800;
   font-weight: bold;
+}
+
+/* FORM ACTIONS */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* PROJETO DETALHES */
+.projeto-detalhes-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.btn-voltar {
+  margin-bottom: 20px;
+}
+
+.projeto-imagem-detalhes {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.projeto-info {
+  margin-top: 20px;
+}
+
+.projeto-descricao {
+  line-height: 1.6;
+}
+
+.admin-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-editar {
+  background-color: #4CAF50;
+}
+
+.btn-excluir {
+  background-color: #f44336;
 }
 
 /* BOTÕES HOME */

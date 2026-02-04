@@ -18,40 +18,41 @@ function AdminUsuarios() {
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Erro ao buscar usuários", err);
+                console.log("Erro ao buscar usuários", err);
                 setLoading(false);
             });
     };
 
-    const deletarUsuario = async (id, nomeUsuario) => {
+    const deletarUsuario = async (id, nome) => {
         if (!isAdmin()) {
-            alert('Apenas administradores podem deletar usuários');
+            alert('Apenas administradores podem deletar');
             return;
         }
 
-        if (!confirm(`Tem certeza que deseja deletar o usuário "${nomeUsuario}"? Esta ação não pode ser desfeita.`)) {
+        // confirmação antes de deletar
+        if (!confirm(`Deletar ${nome}?`)) {
             return;
         }
 
         try {
             await api.delete(`/usuarios/${id}`);
-            alert('Usuário deletado com sucesso!');
-            carregarUsuarios();
+            alert('Deletado!');
+            carregarUsuarios(); // recarrega a lista
         } catch (err) {
-            console.error('Erro ao deletar usuário:', err.response?.data || err.message);
-            alert(`Erro ao deletar usuário: ${err.response?.data?.message || err.message}`);
+            console.log('Erro:', err);
+            alert('Erro ao deletar');
         }
     };
 
-    if (loading) return <div className="app-container">Carregando usuários...</div>;
+    if (loading) return <div className="app-container">Carregando...</div>;
 
     return (
         <div className='app-container'>
             <div className="main-content">
-                👥 Gerenciar Usuários ({usuarios.length})
+                Gerenciar Usuários ({usuarios.length})
             </div>
 
-            <div style={{ padding: '20px' }}>
+            <div className="admin-container">
                 <table className="admin-table">
                     <thead>
                         <tr>
@@ -66,7 +67,7 @@ function AdminUsuarios() {
                     </thead>
                     <tbody>
                         {usuarios.map((usuario) => {
-                            const isUserAdmin = usuario.email === 'diegocostamarques23@icloud.com';
+                            const isAdminUser = usuario.email === 'diegocostamarques23@icloud.com';
                             return (
                                 <tr key={usuario.idUsuario}>
                                     <td>{usuario.idUsuario}</td>
@@ -74,8 +75,8 @@ function AdminUsuarios() {
                                     <td>{usuario.email}</td>
                                     <td>{usuario.telefone}</td>
                                     <td>
-                                        <span className={`status-badge ${isUserAdmin ? 'tipo-admin' : 'tipo-user'}`}>
-                                            {isUserAdmin ? '👑 ADMIN' : '👤 USER'}
+                                        <span className={`status-badge ${isAdminUser ? 'tipo-admin' : 'tipo-user'}`}>
+                                            {isAdminUser ? 'ADMIN' : 'USER'}
                                         </span>
                                     </td>
                                     <td>
@@ -84,16 +85,16 @@ function AdminUsuarios() {
                                         </span>
                                     </td>
                                     <td>
-                                        {isAdmin() && !isUserAdmin && (
+                                        {isAdmin() && !isAdminUser && (
                                             <button 
                                                 onClick={() => deletarUsuario(usuario.idUsuario, usuario.nome)}
                                                 className="btn-admin btn-excluir"
                                             >
-                                                🗑️ Deletar
+                                                Deletar
                                             </button>
                                         )}
-                                        {isUserAdmin && (
-                                            <span className="admin-principal">👑 Admin Principal</span>
+                                        {isAdminUser && (
+                                            <span className="admin-principal">Admin Principal</span>
                                         )}
                                     </td>
                                 </tr>

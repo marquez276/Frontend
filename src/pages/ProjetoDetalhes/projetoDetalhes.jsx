@@ -44,47 +44,45 @@ function ProjetoDetalhes() {
                 🌱 Detalhes do Projeto
             </div>
 
-            <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
-                <button onClick={() => navigate('/projetos')} className="btn" style={{ marginBottom: '20px' }}>
-                    ← Voltar
+            <div className="projeto-detalhes-container">
+                <button onClick={() => navigate('/projetos')} className="btn btn-voltar">
+                    Voltar
                 </button>
 
                 {projeto.imagem && (
                     <img 
                         src={projeto.imagem} 
                         alt={projeto.nome} 
-                        style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '8px', marginBottom: '20px' }}
+                        className="projeto-imagem-detalhes"
                     />
                 )}
 
                 <h1>{projeto.nome}</h1>
                 <span className="categoria-badge">{projeto.categoria}</span>
 
-                <div style={{ marginTop: '20px' }}>
-                    <p><strong>📍 Cidade:</strong> {projeto.cidade}</p>
-                    {projeto.regiao && <p><strong>🏘️ Região:</strong> {projeto.regiao}</p>}
-                    <p><strong>📝 Descrição:</strong></p>
-                    <p style={{ lineHeight: '1.6' }}>{projeto.descricao}</p>
-                    <p><strong>👤 Criador:</strong> {projeto.nomeCriador}</p>
-                    <p><strong>📞 Contato:</strong> {projeto.contato}</p>
-                    <p><strong>📊 Status:</strong> {projeto.status}</p>
+                <div className="projeto-info">
+                    <p><strong>Cidade:</strong> {projeto.cidade}</p>
+                    {projeto.regiao && <p><strong>Região:</strong> {projeto.regiao}</p>}
+                    <p><strong>Descrição:</strong></p>
+                    <p className="projeto-descricao">{projeto.descricao}</p>
+                    <p><strong>Criador:</strong> {projeto.nomeCriador}</p>
+                    <p><strong>Contato:</strong> {projeto.contato}</p>
+                    <p><strong>Status:</strong> {projeto.status}</p>
                 </div>
 
                 {isAdmin() && (
-                    <div style={{ marginTop: '30px', display: 'flex', gap: '10px' }}>
+                    <div className="admin-actions">
                         <button 
                             onClick={() => navigate(`/editar-projeto/${id}`)} 
-                            className="btn"
-                            style={{ backgroundColor: '#4CAF50' }}
+                            className="btn btn-editar"
                         >
-                            ✏️ Editar
+                            Editar
                         </button>
                         <button 
                             onClick={handleDelete} 
-                            className="btn"
-                            style={{ backgroundColor: '#f44336' }}
+                            className="btn btn-excluir"
                         >
-                            🗑️ Excluir
+                            Excluir
                         </button>
                     </div>
                 )}
