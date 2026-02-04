@@ -19,46 +19,46 @@ function Header() {
                         className="admin-menu-container"
                         onClick={() => setShowAdminMenu(!showAdminMenu)}
                     >
-                        <div className="hamburger-icon">☰</div>
+                        <div className="hamburger-icon">Menu</div>
                         
                         {showAdminMenu && (
                             <div className="dropdown-menu admin-dropdown">
                                 <Link to="/home" className="dropdown-item">
-                                    🏠 Início
+                                    Início
                                 </Link>
                                 <Link to="/projetos" className="dropdown-item">
-                                    🌱 Projetos
+                                    Projetos
                                 </Link>
                                 <Link to="/enviar-ideia" className="dropdown-item">
-                                    💡 Enviar Ideia
+                                    Enviar Ideia
                                 </Link>
                                 <Link to="/dicas" className="dropdown-item">
-                                    📚 Dicas
+                                    Dicas
                                 </Link>
                                 <Link to="/sobre" className="dropdown-item">
-                                    ℹ️ Sobre
+                                    Sobre
                                 </Link>
                                 <Link to="/ajuda" className="dropdown-item">
-                                    ❓ Ajuda
+                                    Ajuda
                                 </Link>
                                 {isAuthenticated && (
                                     <>
-                                        <hr style={{ margin: '10px 0', border: 'none', borderTop: '1px solid #ddd' }} />
+                                        <hr className="menu-divider" />
                                         <Link to="/favoritos" className="dropdown-item">
-                                            ⭐ Favoritos
+                                            Favoritos
                                         </Link>
                                     </>
                                 )}
                                 {isAdmin() && (
                                     <>
                                         <Link to="/admin-projetos" className="dropdown-item">
-                                            🌿 Gerenciar Projetos
+                                            Gerenciar Projetos
                                         </Link>
                                         <Link to="/admin-ideias" className="dropdown-item">
-                                            💡 Gerenciar Ideias
+                                            Gerenciar Ideias
                                         </Link>
                                         <Link to="/admin-usuarios" className="dropdown-item">
-                                            👥 Gerenciar Usuários
+                                            Gerenciar Usuários
                                         </Link>
                                     </>
                                 )}
@@ -78,7 +78,7 @@ function Header() {
                                 className="profile-pic"
                             />
                         ) : (
-                            <div className="profile-icon">👤</div>
+                            <div className="profile-icon">User</div>
                         )}
                         
                         {showDropdown && (
@@ -86,7 +86,7 @@ function Header() {
                                 {isAuthenticated ? (
                                     <>
                                         <Link to="/usuario_layout" className="dropdown-item">
-                                            👤 Perfil
+                                            Perfil
                                         </Link>
                                         <span className="user-name">{user?.nome}</span>
                                         <button onClick={logout} className="dropdown-item">

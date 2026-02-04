@@ -4,50 +4,48 @@ import React, { useState, useEffect } from "react";
 
 function Home() {
 
-     const [vimoveis, setImoveis] = useState([])
+     const [projetos, setProjetos] = useState([])
      const { isAuthenticated, user } = useAuth()
 
      useEffect(() => {
+          // busca os projetos da API
           api.get("/projetos")
                .then((response) => {
-                    setImoveis(response.data)
+                    setProjetos(response.data)
                })
-               .catch(err => console.error("Erro ao buscar projetos", err))
+               .catch(err => console.log("Erro ao buscar projetos", err))
      }, []);
 
-     const adicionarFavorito = async (imovel) => {
+     const adicionarFavorito = async (projeto) => {
           if (!isAuthenticated || !user?.idUsuario) {
-               alert('Faça login para adicionar favoritos!')
+               alert('Precisa fazer login primeiro!')
                return
           }
 
-          const favoritoData = {
+          const dadosFavorito = {
                idUsuario: user.idUsuario,
-               idProjeto: imovel.idProjeto,
+               idProjeto: projeto.idProjeto,
                dataAdicao: new Date().toISOString().split('T')[0],
-               nomeProjeto: imovel.nome,
-               categoriaProjeto: imovel.categoria,
-               cidadeProjeto: imovel.cidade,
-               imagemProjeto: imovel.imagem
+               nomeProjeto: projeto.nome,
+               categoriaProjeto: projeto.categoria,
+               cidadeProjeto: projeto.cidade,
+               imagemProjeto: projeto.imagem
           }
 
           try {
-               await api.post('/favoritos', favoritoData)
-               alert('Imóvel adicionado aos favoritos!')
+               await api.post('/favoritos', dadosFavorito)
+               alert('Projeto favoritado!')
           } catch (err) {
-               console.error('Erro ao adicionar favorito', err)
-               alert('Erro ao adicionar favorito')
+               console.log('Erro ao favoritar', err)
+               alert('Erro ao favoritar')
           }
      }
-
-
-
 
      return (
           <div className='app-container'>
                
                <div className="banner-home">
-                    <h1>🌿 Transforme ideias simples em soluções incríveis</h1>
+                    <h1>Transforme ideias simples em soluções incríveis</h1>
                     <p>O InovaVerde incentiva pessoas a desenvolverem ideias sustentáveis que ajudem o planeta e a sociedade</p>
                     <div className="banner-actions">
                          <a href="/projetos" className="btn-primary">Descubra Projetos</a>
@@ -56,7 +54,7 @@ function Home() {
                </div>
 
                <div className="sobre-section">
-                    <h2>🎯 Conectado ao ODS 9</h2>
+                    <h2>Conectado ao ODS 9</h2>
                     <p>
                          Nosso site promove Indústria, Inovação e Infraestrutura sustentável. 
                          Acreditamos que pequenas ações podem causar grandes impactos positivos no mundo.
@@ -64,32 +62,32 @@ function Home() {
                </div>
 
                <div className="main-content">
-                    🌱 Projetos em Destaque
+                    Projetos em Destaque
                </div>
 
                <div className="cards-container">
-                    {vimoveis.map((imovel) => (
-                         <div key={imovel.idMovel} className="produto-card">
-                              {imovel.imagem && (
-                                   <img src={imovel.imagem} alt={imovel.nome} className="produto-imagem" />
+                    {projetos.map((projeto) => (
+                         <div key={projeto.idProjeto} className="produto-card">
+                              {projeto.imagem && (
+                                   <img src={projeto.imagem} alt={projeto.nome} className="produto-imagem" />
                               )}
-                              <h3>{imovel.nome}</h3>
-                              <span className="categoria-badge">{imovel.tipoNegocio || 'Sustentabilidade'}</span>
-                              <p><strong>Local:</strong> {imovel.cidade} - {imovel.bairro}</p>
-                              <p>{imovel.descricao}</p>
-                              <p><strong>Criador:</strong> {imovel.nomeProprietario}</p>
+                              <h3>{projeto.nome}</h3>
+                              <span className="categoria-badge">{projeto.categoria || 'Sustentabilidade'}</span>
+                              <p><strong>Local:</strong> {projeto.cidade}</p>
+                              <p>{projeto.descricao}</p>
+                              <p><strong>Criador:</strong> {projeto.nomeCriador}</p>
                               <div className="acoes-imovel">
                                    <button 
                                         className="btn-favoritar"
-                                        onClick={() => adicionarFavorito(imovel)}
+                                        onClick={() => adicionarFavorito(projeto)}
                                    >
-                                        ⭐ Favoritar
+                                        Favoritar
                                    </button>
                                    <button 
                                         className="btn-detalhes"
-                                        onClick={() => window.location.href = `/projetos/${imovel.idProjeto}`}
+                                        onClick={() => window.location.href = `/projetos/${projeto.idProjeto}`}
                                    >
-                                        🔍 Saiba mais
+                                        Saiba mais
                                    </button>
                               </div>
                          </div>

@@ -624,6 +624,100 @@ button:hover, .btn:hover {
   background-color: #f44336;
 }
 
+/* SOBRE PAGE */
+.sobre-texto {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.ods-lista {
+  margin-top: 20px;
+}
+
+.ods-item {
+  padding: 15px;
+  background: #f0f9f4;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 4px solid #7FC25E;
+}
+
+.visao-section {
+  background: linear-gradient(135deg, #7FC25E 0%, #5fa845 100%);
+  color: #ffffff;
+}
+
+.visao-titulo {
+  color: #ffffff;
+}
+
+.visao-texto {
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1.8;
+  font-weight: 600;
+}
+
+.card-icon {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #4a8c3a;
+}
+
+.contato-texto {
+  font-size: 18px;
+  text-align: center;
+}
+
+.contato-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* HEADER */
+.menu-divider {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* DICAS PAGE */
+.dica-categoria {
+  font-size: 14px;
+  font-weight: bold;
+  color: #4a8c3a;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 5px 10px;
+  background: #f0f9f4;
+  border-radius: 15px;
+  display: inline-block;
+  width: 100%;
+}
+
+.dica-conteudo {
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.dicas-lembrete {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #7FC25E 0%, #5fa845 100%);
+  color: #ffffff;
+}
+
+.lembrete-titulo {
+  color: #ffffff;
+}
+
+.lembrete-texto {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
 /* BOTÕES HOME */
 .acoes-imovel {
   display: flex;

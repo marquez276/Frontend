@@ -157,22 +157,6 @@ function EnviarIdeia() {
                          />
                     </div>
 
-
-
-
-            {/*       <div className="form-group">
-                         <label>URL da Imagem (opcional)</label>
-                         <input 
-                              type="text" 
-                              name="imagem"
-                              value={formData.imagem}
-                              onChange={handleChange}
-                              placeholder="https://exemplo.com/imagem.jpg"
-                         />
-                    </div>
-
-     */}
-
                     <button type="submit" className="btn" style={{ width: '100%', padding: '15px', fontSize: '18px' }}>
                          🚀 Enviar Ideia
                     </button>
